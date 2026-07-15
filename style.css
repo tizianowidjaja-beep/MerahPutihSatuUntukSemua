@@ -1,0 +1,14 @@
+/* Gradasi Warna Background Latar Belakang Bernuansa Kosmik */
+.pixel-bg { 
+    background: radial-gradient(circle, #0f172a 0%, #020617 100%); 
+}
+
+/* Sembunyikan Konten Tab Secara Default */
+.tab-content { 
+    display: none; 
+}
+
+/* Tampilkan Konten Tab Jika Berstatus Aktif */
+.tab-content.active { 
+    display: block; 
+}
