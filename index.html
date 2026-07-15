@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taman Herbal Indonesia Emas 2045</title>
+    <!-- Framework Tailwind CSS & Hubungan ke Berkas CSS Kustom -->
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pixel-bg text-white min-h-screen p-4 flex flex-col items-center font-sans">
+
+    <!-- Monitor Nilai Poin Utama -->
+    <header class="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-xl mb-4">
+        <div>
+            <h1 class="text-xl font-black text-emerald-400">Taman Indonesia Emas</h1>
+            <p class="text-xs text-slate-400">Ketok Mejik Studio Developer</p>
+        </div>
+        <div class="flex gap-4">
+            <div class="bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-xl text-center">
+                <span class="text-xs text-amber-400 block font-bold">Koin Emas</span>
+                <span id="coin-val" class="text-lg font-black text-amber-400">0</span> 🪙
+            </div>
+            <div class="bg-blue-500/10 border border-blue-500/30 px-3 py-1.5 rounded-xl text-center">
+                <span class="text-xs text-blue-400 block font-bold">Air Tersedia</span>
+                <span id="water-val" class="text-lg font-black text-blue-400">0</span> 💧
+            </div>
+        </div>
+    </header>
+
+    <!-- Segel Kekuatan Pendorong Gerbang Kemenangan -->
+    <section class="w-full max-w-2xl bg-indigo-950/60 border border-indigo-700/50 rounded-2xl p-4 mb-4 text-center">
+        <h2 class="text-xs font-black tracking-widest text-indigo-400 uppercase mb-1">✨ SYARAT SEGEL DIMENSI 2045 ✨</h2>
+        <p class="text-[11px] text-slate-300">Kumpulkan seluruh <strong>10 Perlengkapan Legendaris</strong> untuk menyatukan kekuatan dan membuka Gerbang Utama Kemenangan Hak Anak!</p>
+        <div class="mt-2 text-sm font-bold text-amber-400">
+            Segel Terbuka: <span id="shop-progress" class="text-white">0 / 10</span> Perlengkapan
+        </div>
+    </section>
+
+    <!-- Papan Pengumuman Klaim Kode Redeem -->
+    <section class="w-full max-w-2xl bg-gradient-to-r from-red-600 to-amber-600 rounded-2xl p-4 mb-4 text-center shadow-lg border border-red-500">
+        <h2 class="text-sm font-black tracking-wider uppercase text-white mb-1">🎁 KODE REDEEM RAHASIA 🎁</h2>
+        <p class="text-xs text-amber-100 mb-3 font-medium">Buka <strong>TikTok</strong> atau <strong>YouTube</strong> lalu cari channel <span class="underline font-bold">"Ketok Mejik Studio Developer"</span> untuk berburu kode unik!</p>
+        <div class="flex gap-2 bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+            <input type="text" id="redeem-input" placeholder="MASUKKAN KODE REDEEM DI SINI" class="flex-1 bg-transparent px-3 text-xs font-bold uppercase tracking-widest text-center focus:outline-none text-amber-400">
+            <button onclick="useRedeemCode()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-4 py-2 rounded-lg text-xs cursor-pointer">KLAIM</button>
+        </div>
+    </section>
+
+    <!-- Tombol Navigasi Sistem Tab Menu Utama -->
+    <nav class="w-full max-w-2xl flex gap-2 mb-4">
+        <button onclick="switchTab('tab-kebun')" id="btn-tab-kebun" class="flex-1 py-2.5 rounded-xl text-xs font-black tracking-wider bg-emerald-600 text-white cursor-pointer uppercase">🌱 Kebun</button>
+        <button onclick="switchTab('tab-lab')" id="btn-tab-lab" class="flex-1 py-2.5 rounded-xl text-xs font-black tracking-wider bg-slate-800 text-slate-400 cursor-pointer uppercase">🧪 Lab Jamu</button>
+        <button onclick="switchTab('tab-toko')" id="btn-tab-toko" class="flex-1 py-2.5 rounded-xl text-xs font-black tracking-wider bg-slate-800 text-slate-400 cursor-pointer uppercase">🛍️ Toko Senopati</button>
+    </nav>
+
+    <!-- KONTEN TAB 1: KEBUN HERBAL & MISI BACA ARTIKEL -->
+    <main id="tab-kebun" class="tab-content active w-full max-w-2xl space-y-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+            <h3 class="text-xs font-black uppercase text-slate-400 mb-2">Misi Literasi Hak Anak (Dapatkan Air)</h3>
+            <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl space-y-2">
+                <p id="artikel-title" class="text-xs font-bold text-emerald-400">Artikel 1: Memutus Rantai Pekerja Anak di Sektor Pertanian</p>
+                <p class="text-xs text-slate-400 leading-relaxed">Pekerja anak merampas hak belajar mereka. Menuju Indonesia Emas 2045, setiap anak wajib berada di sekolah demi masa depan bangsa.</p>
+                <button onclick="readArticle()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-2 rounded-lg text-xs tracking-wider cursor-pointer uppercase">Selesai Membaca (+1 Air 💧)</button>
+            </div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+            <h3 class="text-xs font-black uppercase text-slate-400 mb-3">Daftar Tanaman Herbal Khas Indonesia</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="plants-grid"></div>
+        </div>
+    </main>
+
+    <!-- KONTEN TAB 2: DAPUR ALKEMIS LAB JAMU TRADISIONAL -->
+    <main id="tab-lab" class="tab-content w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+        <div>
+            <h3 class="text-xs font-black uppercase text-slate-400 mb-2">Pilih Stok Bahan untuk Meracik</h3>
+            <div class="grid grid-cols-3 gap-2" id="inventory-grid"></div>
+        </div>
+        <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl text-center">
+            <h4 class="text-xs font-black uppercase text-slate-400 mb-2">Kuali Pencampuran</h4>
+            <div id="mix-slots" class="text-sm font-bold text-amber-400 min-h-[30px]">Belum ada bahan yang dipilih</div>
+            <div class="flex gap-2 mt-3">
+                <button onclick="clearMix()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold py-2 rounded-lg cursor-pointer uppercase">Kosongkan</button>
+                <button onclick="craftPotion()" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black py-2 rounded-lg cursor-pointer uppercase">Racik Jamu</button>
+            </div>
+        </div>
+        <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl">
+            <h4 class="text-xs font-black uppercase text-slate-400 mb-2">Pasar Jamu Warga Desa</h4>
+            <div id="potion-inventory" class="space-y-2"></div>
+        </div>
+    </main>
+
+    <!-- KONTEN TAB 3: TOKO BELANJA ARTEFAK PREMIUM -->
+    <main id="tab-toko" class="tab-content w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+        <div>
+            <h2 class="text-sm font-black text-amber-400 uppercase tracking-wider">🛍️ Toko Koleksi Senopati 2045</h2>
+            <p class="text-xs text-slate-400 mt-1">Lengkapi seluruh persenjataan kosmetik pelindung anak ini untuk membuka gerbang kemenangan!</p>
+        </div>
+        <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl">
+            <h4 class="text-[10px] font-black text-slate-400 uppercase mb-1">Gudang Perlengkapan Anda:</h4>
+            <div id="owned-items-display" class="text-xs font-bold text-emerald-400 flex flex-wrap gap-1">Belum ada barang</div>
+        </div>
+        <div class="space-y-2.5" id="shop-items-list"></div>
+        <button onclick="claimVictory()" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 font-black py-4 rounded-xl text-xs tracking-widest cursor-pointer uppercase shadow-lg shadow-orange-950/50">
+            🔓 BUKA GERBANG UTAMA INDONESIA EMAS
+        </button>
+    </main>
+
+    <!-- Hubungan ke Sistem Logika JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
